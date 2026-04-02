@@ -3,201 +3,498 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz iSchool</title>
+  <title>Quiz iSchool - Khám phá phong cách học tập</title>
+  <link rel="shortcut icon" href="https:/ischool.vn/favicon.ico">
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* === THÊM FONT NEXA THIN === */
+    @font-face {
+      font-family: 'NexaBold';
+      src: url('SVN-NEXA BOLD.OTF') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+	@font-face {
+      font-family: 'NexaThin';
+      src: url('SVN-NEXA REGULAR.OTF') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --primary: #a01e21;
+      --accent: #fbb040;
+    }
+
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'NexaBold', 'Poppins', Arial, sans-serif;   /* Ưu tiên Nexa Thin */
+      background: linear-gradient(135deg, #a01e21, #fbb040);
       color: #fff;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      padding: 20px;
+    }
+	.fixed-logo {
+      position: fixed;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: auto;
+      z-index: 1000;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
     }
 
     .container {
-      width: 90%;
-      max-width: 600px;
+      width: 100%;
+      max-width: 620px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      padding: 20px 30px 10px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #fbb040, #ffffff);
+      border-radius: 50px;
+      transition: width 0.4s ease;
+      box-shadow: 0 0 8px rgba(251, 176, 64, 0.6);
+    }
+
+    /* Content */
+    .content {
+      padding: 30px 40px;
     }
 
     h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.95;
+      margin-bottom: 30px;
+	  font-family: NexaThin
+    }
+
+    /* Answers */
+    .answers {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .answers button {
-      display: block;
       width: 100%;
-      margin: 10px 0;
-      padding: 45px;
+      padding: 18px 22px;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 500;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.95);
+      color: #222;
       cursor: pointer;
-      background: #fff;
-      color: #333;
-      transition: 0.2s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+	  font-family: 'NexaThin', 'Poppins', Arial, sans-serif; 
     }
 
     .answers button:hover {
-      background: #f1f1f1;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+      background: #fbb040;
+	  color: white;
+    }
+
+    .answers button:active {
+      transform: scale(0.97);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 16px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .start-btn, .restart-btn {
+      background: white;
+      color: #a01e21;
+      font-weight: 700;
+    }
+
+    .start-btn:hover, .restart-btn:hover {
+      background: #fbb040;
+      color: #222;
+      transform: translateY(-3px);
+    }
+
+    /* Result */
+    .result-icon {
+      font-size: 68px;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	  font-family: 'NexaThin';
+	  overflow-y: scroll;
+	  max-height: 50vh;
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
-    .result {
-      font-size: 20px;
+    @media (max-width: 480px) {
+      .content {
+        padding: 25px 25px;
+      }
+      h1 {
+        font-size: 23px;
+      }
+	  .result-text {
+      font-size: 14px;
+	  }
+    }
+	/* === NÚT KHUYẾN KHÍCH MỚI === */
+    .action-buttons {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .start-btn {
-      padding: 15px 20px;
-      font-size: 18px;
+    .action-btn {
+      padding: 18px 20px;
       border: none;
-      border-radius: 10px;
-      background: #fff;
-      color: #333;
+      border-radius: 18px;
+      font-size: 17.5px;
+      font-weight: 700;
       cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-btn.primary {
+      background: #fbb040;
+      color: #222;
+      font-size: 18px;
+    }
+
+    .action-btn.primary:hover {
+      background: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(251, 176, 64, 0.4);
+    }
+
+    .action-btn.secondary {
+      background: rgba(255,255,255,0.95);
+      color: #a01e21;
+    }
+
+    .action-btn.secondary:hover {
+      background: #a01e21;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .btn {
+      padding: 16px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .start-btn, .restart-btn {
+      background: white;
+      color: #a01e21;
+      font-weight: 700;
+    }
+
+    .start-btn:hover, .restart-btn:hover {
+      background: #fbb040;
+      color: #222;
+      transform: translateY(-3px);
+    }
+
+    .result-icon {
+      font-size: 68px;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-family: 'NexaThin', sans-serif;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      max-height: 45vh;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Ưu tiên mobile */
+    @media (max-width: 480px) {
+      .content { padding: 25px 25px; }
+      .action-btn { padding: 20px 20px; font-size: 18px; }
+      .fixed-logo { width: 170px; }
     }
   </style>
 </head>
 <body>
+<img src="logo.png" alt="Logo iSchool" class="fixed-logo">
+  <div class="container">
 
-<div class="container">
+    <!-- START SCREEN -->
+    <div id="start">
+      <div class="progress-container">
+        <div class="progress-header">
+          <span>Quiz iSchool</span>
+        </div>
+      </div>
+      <div class="content">
+        <h1>🎯 Con bạn thuộc nhóm học tập nào?</h1>
+        <p class="subtitle">Chỉ với 6 câu hỏi nhanh, chúng ta sẽ khám phá phong cách học tập phù hợp nhất với con</p>
+        <button class="btn start-btn" onclick="startQuiz()">Bắt đầu ngay</button>
+      </div>
+    </div>
 
-  <!-- START -->
-  <div id="start">
-    <h1>🎯 Con bạn thuộc nhóm học tập nào?</h1>
-    <p>Chỉ cần 6 câu hỏi nhanh để khám phá</p>
-    <button class="start-btn" onclick="startQuiz()">Bắt đầu</button>
+    <!-- QUIZ SCREEN -->
+    <div id="quiz" class="hidden">
+      <div class="progress-container">
+        <div class="progress-header">
+          <span id="progress-text">Câu 1/6</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" style="width: 16.67%"></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h1 id="question"></h1>
+        <div class="answers" id="answers"></div>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result" class="hidden">
+      <div class="progress-container">
+        <div class="progress-header">
+          <h1>Kết quả của con bạn</h1>
+        </div>
+      </div>
+      <div class="content" style="text-align: center;">
+        <p class="result-text" id="resultText"></p>
+		<button class="btn restart-btn" onclick="location.reload()" style="margin-top: 0;">
+          Làm lại câu hỏi
+        </button>
+		<!-- === 2 NÚT KHUYẾN KHÍCH === -->
+        <div class="action-buttons">
+          <button class="action-btn primary" onclick="openZalo()">
+            Nhắn tin tư vấn phương pháp
+          </button>
+        </div>
+
+        
+      </div>
+    </div>
+
   </div>
 
-  <!-- QUIZ -->
-  <div id="quiz" class="hidden">
-    <h1 id="question"></h1>
-    <div class="answers" id="answers"></div>
-  </div>
+  <script>
+	const ZALO_LINK = "https://zalo.me/0933456072";
+	function openZalo() {
+      window.location.href = ZALO_LINK;
+    }
+    const questions = [
+      { q: "Khi ở nhà, con bạn thường…", answers: [
+        { text: "Năng động, thích vận động", type: "A" },
+        { text: "Tập trung, thích học yên tĩnh", type: "B" },
+        { text: "Sáng tạo, thích vẽ/làm đồ", type: "C" },
+        { text: "Thích nói chuyện, giao tiếp", type: "D" }
+      ]},
+      { q: "Con học tốt nhất khi…", answers: [
+        { text: "Được trải nghiệm thực tế", type: "A" },
+        { text: "Được hướng dẫn rõ ràng từng bước", type: "B" },
+        { text: "Tự khám phá và thử nghiệm", type: "C" },
+        { text: "Học cùng bạn bè, thảo luận", type: "D" }
+      ]},
+      { q: "Ba mẹ mong muốn nhất ở con…", answers: [
+        { text: "Tự tin, năng động", type: "A" },
+        { text: "Kiến thức vững vàng", type: "B" },
+        { text: "Sáng tạo, tư duy linh hoạt", type: "C" },
+        { text: "Giỏi giao tiếp và kết nối", type: "D" }
+      ]},
+      { q: "Con bạn thường gặp khó khăn ở…", answers: [
+        { text: "Ngồi yên học lâu, dễ chán", type: "A" },
+        { text: "Tiếp thu chậm, cần hướng dẫn kỹ", type: "B" },
+        { text: "Thiếu định hướng rõ ràng", type: "C" },
+        { text: "Ngại giao tiếp, thiếu tự tin", type: "D" }
+      ]},
+      { q: "Con thích hoạt động nào hơn?", answers: [
+        { text: "Chơi thể thao, vận động ngoài trời", type: "A" },
+        { text: "Làm bài tập, đọc sách", type: "B" },
+        { text: "Vẽ tranh, sáng tạo, làm mô hình", type: "C" },
+        { text: "Thảo luận, kể chuyện, trình bày", type: "D" }
+      ]},
+      { q: "Khi học một điều mới, con thường…", answers: [
+        { text: "Thử ngay, học qua thực hành", type: "A" },
+        { text: "Lắng nghe kỹ rồi làm theo", type: "B" },
+        { text: "Tự tìm cách làm theo ý mình", type: "C" },
+        { text: "Hỏi thêm và trao đổi với người khác", type: "D" }
+      ]}
+    ];
 
-  <!-- RESULT -->
-  <div id="result" class="hidden">
-    <h1>Kết quả</h1>
-    <p class="result" id="resultText"></p>
-    <button class="start-btn" onclick="location.reload()">Làm lại</button>
-  </div>
+    let current = 0;
+    let scores = { A: 0, B: 0, C: 0, D: 0 };
 
-</div>
+    function startQuiz() {
+      document.getElementById("start").classList.add("hidden");
+      document.getElementById("quiz").classList.remove("hidden");
+      showQuestion();
+    }
 
-<script>
-const questions = [
-  {
-    q: "Khi ở nhà, con bạn thường…",
-    answers: [
-      { text: "Năng động, thích vận động", type: "A" },
-      { text: "Tập trung, thích học yên tĩnh", type: "B" },
-      { text: "Sáng tạo, thích vẽ/làm đồ", type: "C" },
-      { text: "Thích nói chuyện, giao tiếp", type: "D" }
-    ]
-  },
-  {
-    q: "Con học tốt nhất khi…",
-    answers: [
-      { text: "Được trải nghiệm", type: "A" },
-      { text: "Được hướng dẫn rõ ràng", type: "B" },
-      { text: "Tự khám phá", type: "C" },
-      { text: "Học cùng bạn", type: "D" }
-    ]
-  },
-  {
-    q: "Ba mẹ mong muốn nhất ở con…",
-    answers: [
-      { text: "Tự tin, năng động", type: "A" },
-      { text: "Kiến thức vững", type: "B" },
-      { text: "Sáng tạo", type: "C" },
-      { text: "Giỏi giao tiếp", type: "D" }
-    ]
-  },
-  {
-    q: "Con bạn thường gặp khó khăn ở…",
-    answers: [
-      { text: "Ngồi học lâu, dễ chán", type: "A" },
-      { text: "Tiếp thu chậm, cần hướng dẫn kỹ", type: "B" },
-      { text: "Thiếu định hướng rõ ràng", type: "C" },
-      { text: "Ngại giao tiếp, thiếu tự tin", type: "D" }
-    ]
-  },
-  {
-    q: "Con thích hoạt động nào hơn?",
-    answers: [
-      { text: "Chơi thể thao, vận động", type: "A" },
-      { text: "Làm bài tập, đọc sách", type: "B" },
-      { text: "Vẽ, sáng tạo, làm mô hình", type: "C" },
-      { text: "Thảo luận, trình bày ý tưởng", type: "D" }
-    ]
-  },
-  {
-    q: "Khi học một điều mới, con thường…",
-    answers: [
-      { text: "Thử ngay, học qua làm", type: "A" },
-      { text: "Lắng nghe, ghi nhớ rồi làm theo", type: "B" },
-      { text: "Tự tìm cách làm theo ý mình", type: "C" },
-      { text: "Hỏi thêm và trao đổi với người khác", type: "D" }
-    ]
-  }
-];
-let current = 0;
-let scores = { A: 0, B: 0, C: 0, D: 0 };
+    function updateProgress() {
+      const percent = ((current) / questions.length) * 100;
+      document.getElementById("progress-fill").style.width = percent + "%";
+      document.getElementById("progress-text").innerText = `Câu ${current + 1}/6`;
+    }
 
-function startQuiz() {
-  document.getElementById("start").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  showQuestion();
+    function showQuestion() {
+      updateProgress();
+      const q = questions[current];
+      document.getElementById("question").innerText = q.q;
+
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      q.answers.forEach(a => {
+        const btn = document.createElement("button");
+        btn.innerText = a.text;
+        btn.onclick = () => selectAnswer(a.type);
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(type) {
+      scores[type]++;
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("result").classList.remove("hidden");
+
+      let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      let icon = "";
+      let text = "";
+
+      switch(maxType) {
+  case "A":
+    icon = "🌟";
+    text = `
+    🌟 <strong>Nhóm Năng động – Học qua trải nghiệm</strong><br><br>
+    Trẻ thuộc nhóm này thường có xu hướng tiếp thu kiến thức tốt hơn thông qua các hoạt động thực hành, vận động và trải nghiệm thực tế. Các em dễ hứng thú khi được tham gia vào môi trường học tập có tính tương tác cao, thay vì chỉ ngồi nghe giảng thụ động.<br><br>
+    Về mặt học tập, trẻ phù hợp với các phương pháp “learning by doing” (học qua hành động), nơi kiến thức được gắn liền với tình huống thực tiễn. Điều này giúp tăng khả năng ghi nhớ, phát triển tư duy linh hoạt và duy trì động lực học tập lâu dài.
+    `;
+    break;
+
+  case "B":
+    icon = "📚";
+    text = `
+    📚 <strong>Nhóm Học thuật – Tập trung & Kiến thức vững</strong><br><br>
+    Trẻ thuộc nhóm này có xu hướng học tập tốt trong môi trường có cấu trúc rõ ràng, lộ trình cụ thể và sự hướng dẫn chi tiết. Các em thường có khả năng tập trung cao, ghi nhớ tốt và tiếp thu hiệu quả thông qua việc nghe giảng, đọc tài liệu và luyện tập có hệ thống.<br><br>
+    Phương pháp học phù hợp là tiếp cận từng bước, củng cố kiến thức nền tảng và duy trì sự ổn định trong quá trình học. Nhóm này thường phát huy tốt trong các môi trường học tập đề cao tính kỷ luật và chiều sâu kiến thức.
+    `;
+    break;
+
+  case "C":
+    icon = "🎨";
+    text = `
+    🎨 <strong>Nhóm Sáng tạo – Tư duy mở & Khám phá</strong><br><br>
+    Trẻ thuộc nhóm này có xu hướng tư duy linh hoạt, thích đặt câu hỏi và tìm kiếm cách tiếp cận vấn đề theo góc nhìn riêng. Các em thường hứng thú với những hoạt động mang tính sáng tạo như thiết kế, xây dựng ý tưởng hoặc khám phá những điều mới mẻ.<br><br>
+    Về học tập, trẻ phù hợp với môi trường khuyến khích thử nghiệm, sai và sửa, cũng như các phương pháp học tập mở như học theo dự án (project-based learning). Điều này giúp phát triển khả năng tư duy độc lập và sáng tạo.
+    `;
+    break;
+
+  case "D":
+    icon = "🌍";
+    text = `
+    🌍 <strong>Nhóm Giao tiếp – Kết nối & Hội nhập</strong><br><br>
+    Trẻ thuộc nhóm này có xu hướng học tốt thông qua tương tác xã hội, trao đổi và hợp tác với người khác. Các em thường tự tin khi trình bày ý kiến, thích làm việc nhóm và dễ thích nghi với môi trường có tính kết nối cao.<br><br>
+    Phương pháp học phù hợp là thảo luận nhóm, trình bày, phản biện và các hoạt động giao tiếp đa chiều. Những trải nghiệm này giúp trẻ phát triển kỹ năng ngôn ngữ, tư duy xã hội và khả năng thích nghi trong môi trường đa dạng.
+    `;
+    break;
 }
 
-function showQuestion() {
-  const q = questions[current];
-  document.getElementById("question").innerText = q.q;
-
-  const answersDiv = document.getElementById("answers");
-  answersDiv.innerHTML = "";
-
-  q.answers.forEach(a => {
-    const btn = document.createElement("button");
-    btn.innerText = a.text;
-    btn.onclick = () => selectAnswer(a.type);
-    answersDiv.appendChild(btn);
-  });
-}
-
-function selectAnswer(type) {
-  scores[type]++;
-  current++;
-
-  if (current < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("result").classList.remove("hidden");
-
-  let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-
-  let text = "";
-
-  if (maxType === "A") text = "🌟 Con thuộc nhóm Năng động – Học qua trải nghiệm";
-  if (maxType === "B") text = "📚 Con thuộc nhóm Học thuật – Tập trung";
-  if (maxType === "C") text = "🎨 Con thuộc nhóm Sáng tạo – Tư duy mở";
-  if (maxType === "D") text = "🌍 Con thuộc nhóm Giao tiếp – Hội nhập";
-
-  document.getElementById("resultText").innerText = text;
-}
-</script>
-
+      document.getElementById("resultText").innerHTML = text;
+    }
+  </script>
 </body>
 </html>
