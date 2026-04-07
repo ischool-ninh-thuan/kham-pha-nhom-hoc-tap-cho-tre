@@ -383,43 +383,61 @@
       window.location.href = ZALO_LINK;
     }
     const questions = [
-      { q: "Khi ở nhà, con bạn thường…", answers: [
-        { text: "Năng động, thích vận động", type: "A" },
-        { text: "Tập trung, thích học yên tĩnh", type: "B" },
-        { text: "Sáng tạo, thích vẽ/làm đồ", type: "C" },
-        { text: "Thích nói chuyện, giao tiếp", type: "D" }
-      ]},
-      { q: "Con học tốt nhất khi…", answers: [
-        { text: "Được trải nghiệm thực tế", type: "A" },
-        { text: "Được hướng dẫn rõ ràng từng bước", type: "B" },
-        { text: "Tự khám phá và thử nghiệm", type: "C" },
-        { text: "Học cùng bạn bè, thảo luận", type: "D" }
-      ]},
-      { q: "Ba mẹ mong muốn nhất ở con…", answers: [
-        { text: "Tự tin, năng động", type: "A" },
-        { text: "Kiến thức vững vàng", type: "B" },
-        { text: "Sáng tạo, tư duy linh hoạt", type: "C" },
-        { text: "Giỏi giao tiếp và kết nối", type: "D" }
-      ]},
-      { q: "Con bạn thường gặp khó khăn ở…", answers: [
-        { text: "Ngồi yên học lâu, dễ chán", type: "A" },
-        { text: "Tiếp thu chậm, cần hướng dẫn kỹ", type: "B" },
-        { text: "Thiếu định hướng rõ ràng", type: "C" },
-        { text: "Ngại giao tiếp, thiếu tự tin", type: "D" }
-      ]},
-      { q: "Con thích hoạt động nào hơn?", answers: [
-        { text: "Chơi thể thao, vận động ngoài trời", type: "A" },
-        { text: "Làm bài tập, đọc sách", type: "B" },
-        { text: "Vẽ tranh, sáng tạo, làm mô hình", type: "C" },
-        { text: "Thảo luận, kể chuyện, trình bày", type: "D" }
-      ]},
-      { q: "Khi học một điều mới, con thường…", answers: [
-        { text: "Thử ngay, học qua thực hành", type: "A" },
-        { text: "Lắng nghe kỹ rồi làm theo", type: "B" },
-        { text: "Tự tìm cách làm theo ý mình", type: "C" },
-        { text: "Hỏi thêm và trao đổi với người khác", type: "D" }
-      ]}
-    ];
+  {
+    q: "Khi gặp một món đồ chơi hoặc vật lạ, con bạn thường...",
+    answers: [
+      { text: "Lao vào mày mò, tháo lắp ngay lập tức", type: "A" },
+      { text: "Quan sát kỹ và tìm hiểu nguyên lý trước", type: "B" },
+      { text: "Tìm cách dùng theo những ý tưởng kỳ lạ, sáng tạo", type: "C" },
+      { text: "Rủ bạn bè hoặc gia đình cùng khám phá", type: "D" }
+    ]
+  },
+  {
+    q: "Con học tập hứng thú nhất trong môi trường nào?",
+    answers: [
+      { text: "Được vận động, chạy nhảy, thực hành ngoài trời", type: "A" },
+      { text: "Yên tĩnh, có sách vở và tài liệu rõ ràng", type: "B" },
+      { text: "Đầy màu sắc, tự do vẽ vời và sáng tạo", type: "C" },
+      { text: "Có nhiều bạn bè, được thảo luận và làm nhóm", type: "D" }
+    ]
+  },
+  {
+    q: "Thầy cô hoặc người thân thường khen con là...",
+    answers: [
+      { text: "Nhanh nhẹn, năng động, thích trải nghiệm", type: "A" },
+      { text: "Tập trung, ham học hỏi, nhớ kiến thức chắc", type: "B" },
+      { text: "Giàu trí tưởng tượng, suy nghĩ độc đáo", type: "C" },
+      { text: "Thân thiện, biết lắng nghe, kết nối tốt", type: "D" }
+    ]
+  },
+  {
+    q: "Khi học kỹ năng mới, con thường...",
+    answers: [
+      { text: "Thực hành ngay, thử-sai qua vận động", type: "A" },
+      { text: "Đọc hướng dẫn chi tiết và học theo logic", type: "B" },
+      { text: "Thử nghiệm theo cách riêng, thêm ý tưởng sáng tạo", type: "C" },
+      { text: "Học cùng bạn bè, trao đổi và hỗ trợ nhau", type: "D" }
+    ]
+  },
+  {
+    q: "Con thích dành thời gian rảnh để...",
+    answers: [
+      { text: "Chơi thể thao, vận động hoặc thí nghiệm", type: "A" },
+      { text: "Đọc sách, giải toán hoặc nghiên cứu kiến thức", type: "B" },
+      { text: "Vẽ tranh, làm thủ công, sáng tạo đồ vật", type: "C" },
+      { text: "Chơi nhóm, trò chuyện và chia sẻ với bạn bè", type: "D" }
+    ]
+  },
+  {
+    q: "Con nhớ kiến thức tốt nhất khi...",
+    answers: [
+      { text: "Được thực hành và trải nghiệm trực tiếp", type: "A" },
+      { text: "Ghi chép và ôn tập có hệ thống", type: "B" },
+      { text: "Dùng hình ảnh, màu sắc hoặc tưởng tượng", type: "C" },
+      { text: "Thảo luận nhóm và dạy lại cho người khác", type: "D" }
+    ]
+  }
+];
 
     let current = 0;
     let scores = { A: 0, B: 0, C: 0, D: 0 };
@@ -472,20 +490,20 @@
 
       switch(maxType) {
   case "A":
-    icon = "🌟";
+    icon = "🚀";
     text = `
-    🌟 <strong>Nhóm Năng động – Học qua trải nghiệm</strong><br><br>
-    Trẻ thuộc nhóm này thường có xu hướng tiếp thu kiến thức tốt hơn thông qua các hoạt động thực hành, vận động và trải nghiệm thực tế. Các em dễ hứng thú khi được tham gia vào môi trường học tập có tính tương tác cao, thay vì chỉ ngồi nghe giảng thụ động.<br><br>
-    Về mặt học tập, trẻ phù hợp với các phương pháp “learning by doing” (học qua hành động), nơi kiến thức được gắn liền với tình huống thực tiễn. Điều này giúp tăng khả năng ghi nhớ, phát triển tư duy linh hoạt và duy trì động lực học tập lâu dài.
+    🚀 <strong>Nhóm Năng động – Học qua trải nghiệm</strong><br><br>
+    Trẻ thuộc nhóm này thường tiếp thu kiến thức tốt nhất khi được vận động, thực hành và trải nghiệm thực tế. Các em khó ngồi yên lâu và hứng thú nhất với phương pháp “learning by doing”.<br><br>
+    <strong>Phương pháp phù hợp:</strong> Thí nghiệm, học qua trò chơi vận động, tham quan thực tế, làm dự án hands-on.
     `;
     break;
 
   case "B":
     icon = "📚";
     text = `
-    📚 <strong>Nhóm Học thuật – Tập trung & Kiến thức vững</strong><br><br>
-    Trẻ thuộc nhóm này có xu hướng học tập tốt trong môi trường có cấu trúc rõ ràng, lộ trình cụ thể và sự hướng dẫn chi tiết. Các em thường có khả năng tập trung cao, ghi nhớ tốt và tiếp thu hiệu quả thông qua việc nghe giảng, đọc tài liệu và luyện tập có hệ thống.<br><br>
-    Phương pháp học phù hợp là tiếp cận từng bước, củng cố kiến thức nền tảng và duy trì sự ổn định trong quá trình học. Nhóm này thường phát huy tốt trong các môi trường học tập đề cao tính kỷ luật và chiều sâu kiến thức.
+    📚 <strong>Nhóm Học thuật – Logic & Kiến thức vững vàng</strong><br><br>
+    Trẻ thuộc nhóm này thích học tập có hệ thống, logic rõ ràng và môi trường yên tĩnh. Các em thường tập trung cao, ghi nhớ tốt và thích đào sâu kiến thức.<br><br>
+    <strong>Phương pháp phù hợp:</strong> Học theo lộ trình, sách chuyên sâu, bài tập có cấu trúc, phân tích và suy luận logic.
     `;
     break;
 
@@ -493,21 +511,20 @@
     icon = "🎨";
     text = `
     🎨 <strong>Nhóm Sáng tạo – Tư duy mở & Khám phá</strong><br><br>
-    Trẻ thuộc nhóm này có xu hướng tư duy linh hoạt, thích đặt câu hỏi và tìm kiếm cách tiếp cận vấn đề theo góc nhìn riêng. Các em thường hứng thú với những hoạt động mang tính sáng tạo như thiết kế, xây dựng ý tưởng hoặc khám phá những điều mới mẻ.<br><br>
-    Về học tập, trẻ phù hợp với môi trường khuyến khích thử nghiệm, sai và sửa, cũng như các phương pháp học tập mở như học theo dự án (project-based learning). Điều này giúp phát triển khả năng tư duy độc lập và sáng tạo.
+    Trẻ thuộc nhóm này có trí tưởng tượng phong phú, thích thử nghiệm và tìm ra cách làm mới mẻ. Các em thường suy nghĩ khác biệt và không thích khuôn mẫu.<br><br>
+    <strong>Phương pháp phù hợp:</strong> Học qua dự án tự do, nghệ thuật, mind map, khuyến khích sáng tạo và thử nghiệm.
     `;
     break;
 
   case "D":
-    icon = "🌍";
+    icon = "🤝";
     text = `
-    🌍 <strong>Nhóm Giao tiếp – Kết nối & Hội nhập</strong><br><br>
-    Trẻ thuộc nhóm này có xu hướng học tốt thông qua tương tác xã hội, trao đổi và hợp tác với người khác. Các em thường tự tin khi trình bày ý kiến, thích làm việc nhóm và dễ thích nghi với môi trường có tính kết nối cao.<br><br>
-    Phương pháp học phù hợp là thảo luận nhóm, trình bày, phản biện và các hoạt động giao tiếp đa chiều. Những trải nghiệm này giúp trẻ phát triển kỹ năng ngôn ngữ, tư duy xã hội và khả năng thích nghi trong môi trường đa dạng.
+    🤝 <strong>Nhóm Hòa đồng – Học qua tương tác</strong><br><br>
+    Trẻ thuộc nhóm này học tốt nhất khi được giao tiếp, thảo luận và làm việc nhóm. Các em thích chia sẻ, lắng nghe và kết nối với người khác.<br><br>
+    <strong>Phương pháp phù hợp:</strong> Học nhóm, thuyết trình, dạy lại kiến thức, tham gia câu lạc bộ và hoạt động tập thể.
     `;
     break;
 }
-
       document.getElementById("resultText").innerHTML = text;
     }
   </script>
